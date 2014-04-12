@@ -1,0 +1,14 @@
+#!/bin/sh
+# Fix touchpad and set brightness for Asus K56CA.
+
+case "$1" in
+	hibernate|suspend)
+		;;
+	thaw|resume) 
+        export DISPLAY=:0
+        /home/scott/code/asus-k56ca/fixtouchpad.sh >/tmp/99asus-k56ca 2>&1
+        /home/scott/code/asus-k56ca/brightness.py 5 >>/tmp/99asus-k56ca 2>&1
+		;;
+	*) exit $NA
+		;;
+esac
